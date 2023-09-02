@@ -1,0 +1,24 @@
+
+#db:
+#  local:
+#    url: jdbc:postgresql://127.0.0.1:5432/Clevertec
+#    password: root
+#    user: postgres
+#    driver: org.postgresql.Driver
+#    pool:
+#      size: 15
+#
+#config:
+#  addDataSourceProperty:
+#    cache: 'cachePrepStmts'
+#    bool-cache: true
+#    prep: 'prepStmtCacheSize'
+#    size: 250
+#    prepStmt: 'prepStmtCacheSqlLimit'
+#    limit: 2048
+
+
+driverClassName: org.postgresql.Driver
+jdbcUrl: jdbc:postgresql://127.0.0.1:5432/Clevertec
+username: postgres
+password: root
