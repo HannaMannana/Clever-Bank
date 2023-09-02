@@ -208,7 +208,7 @@ public class AccountServiceImpl implements AccountService {
                 int lastDayOfMonth = cal.getActualMaximum(Calendar.DATE);
                 String time = cal.get(Calendar.HOUR_OF_DAY) + ":" + cal.get(Calendar.MINUTE);
                 int seconds = cal.get(Calendar.SECOND);
-                if (time.equals("21:23") && seconds < 30 && cal.get(Calendar.DAY_OF_MONTH) == lastDayOfMonth) {
+                if (time.equals("00:00") && seconds < 30 && cal.get(Calendar.DAY_OF_MONTH) == lastDayOfMonth) {
                     for (Account account : accountRepo.findAll()) {
                         if (account.getBankId().equals(1L)) {
                             account.setBalance(account.getBalance().add(account.getBalance().multiply(BigDecimal.valueOf(0.01))).setScale(2, RoundingMode.HALF_UP));
@@ -221,6 +221,8 @@ public class AccountServiceImpl implements AccountService {
         }, 0, 30000);
         return "timer is running";
     }
+
+
 
 
     @Override
@@ -323,6 +325,16 @@ public class AccountServiceImpl implements AccountService {
         }
     }
 
+    /**
+     * Метод сбора объекта
+     * @param value сумма денег
+     * @param currency валюта
+     * @param accountId идентификатор основного счета
+     * @param accountSenderId идентификатор счета отправителя
+     * @param accountRecipientId идентификатор счета получателя
+     * @param type тип транзакции
+     * @return объкт транзакции
+     */
     public Transaction transactionForm(BigDecimal value, String currency, Long accountId, Long accountSenderId, Long accountRecipientId, Transaction.Type type) {
 
         return Transaction.builder()
@@ -337,6 +349,11 @@ public class AccountServiceImpl implements AccountService {
     }
 
 
+    /**
+     * Метод создания чека
+     * @param transactionId идентификатор транзакции
+     * @param check чек
+     */
     public void createCheck(Long transactionId, String check) {
         try {
             File file = new File("src/check/check" + transactionId + ".txt");
@@ -353,6 +370,14 @@ public class AccountServiceImpl implements AccountService {
         }
     }
 
+
+    /**
+     * Метод подбора нужного кол-ва пробелов
+     * @param leftValue левая строка
+     * @param rightValue правкая строка
+     * @param isDate true - если дата
+     * @return готовая строка для чека
+     */
     public String checkView(String leftValue, String rightValue, boolean isDate) {
         int numberOfSymbols = 55 - leftValue.length() - rightValue.length();
         if (isDate) {
