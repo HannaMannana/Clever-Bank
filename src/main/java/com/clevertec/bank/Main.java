@@ -64,9 +64,6 @@ public class Main {
             } while (senderAccount == null);
 
 
-
-//375448001015
-
             do {
                 System.out.println(" 1 -- Transfer money");
                 System.out.println(" 2 -- Withdrawal");
