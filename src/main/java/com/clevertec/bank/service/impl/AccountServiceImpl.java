@@ -227,7 +227,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public void createPdf(Long userId, String iban) {
-        Font font = FontFactory.getFont("src/dejavu-sans/DejaVuSans.ttf", "cp1251", BaseFont.EMBEDDED, 10);
+        Font font = FontFactory.getFont("dejavu-sans/DejaVuSans.ttf", "cp1251", BaseFont.EMBEDDED, 10);
         Account account = this.accountRepo.findByIban(iban);
         String bank = this.bankRepo.findById(account.getBankId()).getName();
         SimpleDateFormat sdf = new SimpleDateFormat("MM.dd.yyyy");
@@ -245,7 +245,7 @@ public class AccountServiceImpl implements AccountService {
 
         try {
             Document document = new Document();
-            File file = new File("src/statement/Выписка" + account.getId() + ".pdf");
+            File file = new File("statement/Выписка" + account.getId() + ".pdf");
             FileOutputStream outputStream = new FileOutputStream(file);
             PdfWriter.getInstance(document, outputStream);
             PdfPTable table1 = new PdfPTable(2);
@@ -356,7 +356,7 @@ public class AccountServiceImpl implements AccountService {
      */
     public void createCheck(Long transactionId, String check) {
         try {
-            File file = new File("src/check/check" + transactionId + ".txt");
+            File file = new File("check/check" + transactionId + ".txt");
             if (!file.exists())
                 file.createNewFile();
 

@@ -23,7 +23,7 @@ public class TransactionCreateController implements Controller {
       Long accountSenderId = Long.valueOf("accountSenderId");
       Long accountRecipientId = Long.valueOf("accountRecipientId");
       Timestamp date = Timestamp.valueOf("date");
-//      Type transactionType
+      Transaction.Type type = Transaction.Type.valueOf("transaction");
 
 
       Transaction transaction = new Transaction();
@@ -33,6 +33,7 @@ public class TransactionCreateController implements Controller {
       transaction.setAccountSenderId(accountSenderId);
       transaction.setAccountRecipientId(accountRecipientId);
       transaction.setDate(date);
+      transaction.setTransactionType(type);
       transactionService.create(transaction);
 
       req.setAttribute("message", "Transaction created");
