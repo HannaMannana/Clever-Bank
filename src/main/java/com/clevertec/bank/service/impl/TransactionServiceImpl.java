@@ -1,7 +1,7 @@
 package com.clevertec.bank.service.impl;
 
+import com.clevertec.bank.repository.TransactionRepo;
 import com.clevertec.bank.repository.entity.Transaction;
-import com.clevertec.bank.repository.impl.TransactionRepoImpl;
 import com.clevertec.bank.service.TransactionService;
 import lombok.RequiredArgsConstructor;
 
@@ -10,7 +10,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TransactionServiceImpl implements TransactionService {
 
-    private final TransactionRepoImpl transactionRepo;
+    private final TransactionRepo transactionRepo;
 
     @Override
     public Transaction findById(Long id) {
