@@ -31,3 +31,6 @@ hs_err_pid*
 #ide setting
 .idea/
 *.iml
+
+.gradle
+.build
